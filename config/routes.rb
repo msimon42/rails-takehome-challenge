@@ -1,3 +1,9 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :buildings, only:[:index, :show] do
+    resources :offices, only:[:show]
+  end
+
+  resources :companies, only:[:show, :create, :destroy] do
+    resources :employees, only:[:show, :create, :destroy]
+  end
 end
