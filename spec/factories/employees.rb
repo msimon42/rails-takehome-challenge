@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :employee do
-    name { "MyString" }
-    title { "MyString" }
-    company { nil }
+    name { Faker::Name.name }
+    title { Faker::Company.profession }
+    association :company
   end
 end

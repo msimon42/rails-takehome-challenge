@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :office do
-    building { nil }
-    floor { "MyString" }
+    association :building
+    floor { "#{rand(25)}}" }
   end
 end
