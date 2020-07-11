@@ -9,7 +9,7 @@ class Office < ApplicationRecord
   end
 
   def self.unavailable
-    where_not(company_id: nil)
+    where.not(company_id: nil)
   end
 
   def rent
