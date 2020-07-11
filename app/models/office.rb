@@ -1,4 +1,18 @@
 class Office < ApplicationRecord
   belongs_to :building
   belongs_to :company, optional: true
+
+  validates :floor, presence: true, numericality: true
+
+  def self.available
+    where(company_id: nil)
+  end
+
+  def self.unavailable
+    where_not(company_id: nil)
+  end
+
+  def rent
+    building.rent_per_floor
+  end
 end
