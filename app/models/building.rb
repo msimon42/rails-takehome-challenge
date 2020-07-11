@@ -1,6 +1,7 @@
 class Building < ApplicationRecord
   has_many :offices
   has_many :companies, through: :offices
+  has_many :employees, through: :companies
 
   validates_presence_of :name,
                         :country,
@@ -16,7 +17,7 @@ class Building < ApplicationRecord
   end
 
   def occupied_floors
-    unavailable_offices.pluck(:floor)
+    occupied_offices.pluck(:floor)
   end
 
   def available_offices
@@ -29,10 +30,6 @@ class Building < ApplicationRecord
 
   def current_monthly_receipts
     occupied_offices.length * rent_per_floor
-  end
-
-  def employees
-    companies.joins(:employees)
   end
 
   def total_employees_with_access
