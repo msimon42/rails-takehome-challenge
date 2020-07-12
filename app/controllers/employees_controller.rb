@@ -3,15 +3,21 @@ class EmployeesController < ApplicationController
     @employee = Employee.find(params[:id])
   end
 
+  def new
+    company = Company.find(params[:company_id])
+    @offices = OfficeDropdownFacade.prepare_for_dropdown(company.offices)
+  end
+
   def create
     company = Company.find(params[:company_id])
     employee = company.employees.create(employee_params)
+    employee.office_id = params[:office]
     if employee.save
       flash[:success] = "#{employee.name} added to #{company.name}"
       redirect_to company_path(params[:company_id])
     else
       flash[:danger] = employee.errors.full_messages.to_sentence
-      redirect_back fallback_location: new_company_path
+      redirect_back fallback_location: new_company_employee_path
     end
   end
 
