@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :offices, only:[:show]
   end
 
-  resources :companies, only:[:show, :create, :destroy] do
+  resources :companies, only:[:show, :create, :destroy, :new] do
     resources :employees, only:[:show, :create, :destroy]
   end
 end
