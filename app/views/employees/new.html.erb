@@ -1,0 +1,8 @@
+<h1>Add Employee</h1>
+<%= form_with url: company_employees_path do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+  <%= form.label :title %>
+  <%= form.text_field :title %>
+  <%= form.submit %>
+<% end %>
