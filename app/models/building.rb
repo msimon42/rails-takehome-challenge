@@ -35,4 +35,17 @@ class Building < ApplicationRecord
   def total_employees_with_access
     employees.length
   end
+
+  def companies_by_floor
+    query = ActiveRecord::Base.connection.execute(
+      """
+      SELECT offices.floor, companies.name, companies.id
+      FROM offices
+      LEFT JOIN companies ON offices.company_id = companies.id
+      WHERE offices.building_id = #{self.id}
+      ORDER BY companies.name
+      """
+    )
+    query.to_a
+  end
 end
