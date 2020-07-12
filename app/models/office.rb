@@ -1,6 +1,7 @@
 class Office < ApplicationRecord
   belongs_to :building
   belongs_to :company, optional: true
+  has_many :employees
 
   validates :floor, presence: true, numericality: true
 
