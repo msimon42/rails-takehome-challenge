@@ -2,6 +2,7 @@
   <h1 class="display-4">Welcome to the CoShare Portal</h1>
   <hr class="my-4">
   <p class="lead">
-    <%= button_to 'View All Buildings', buildings_path, class: 'btn btn-primary btn-lg', method: :get  %>
+    <%= link_to 'View All Buildings', buildings_path, class: 'btn btn-primary btn-lg'  %>
+    <%= link_to 'View and Manage Companies', companies_path, class: 'btn btn-primary btn-lg'  %>
   </p>
 </div>
