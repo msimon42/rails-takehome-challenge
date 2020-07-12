@@ -1,0 +1,28 @@
+<h1><%= @building_facade.building.name %></h1>
+
+<h2>Building Information</h2>
+<p>Name: <%= @building_facade.building.name %></p>
+<p>Country: <%= @building_facade.building.country %></p>
+<p>Address: <%= @building_facade.building.address %></p>
+<p>Rent per Floor: <%= number_to_currency @building_facade.building.rent_per_floor %></p>
+<p>Number of Floors: <%= @building_facade.building.number_of_floors %></p>
+<p>Total Rent: <%= number_to_currency @building_facade.building.current_monthly_receipts %></p>
+<p>Employees with Access: <%= @building_facade.building.total_employees_with_access %></p>
+
+<h2>Current Occupants</h2>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Floor Number</th>
+        <th>Company Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @building_facade.companies_by_floor.each do |row_info| %>
+        <tr>
+          <td><%= row_info.floor_number %></td>
+          <td><%= link_to row_info.company_label, row_info.path %></td>
+        </tr>
+      <% end %>
+    </tbody>
+</table>
