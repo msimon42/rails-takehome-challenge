@@ -1,4 +1,4 @@
-class NewCompanyFacade
+class OfficeDropdownFacade
   def self.prepare_for_dropdown(offices)
     dropdown_option = Struct.new(:id, :info)
 

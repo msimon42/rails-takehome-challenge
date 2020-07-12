@@ -21,7 +21,7 @@ class CompaniesController < ApplicationController
   end
 
   def new
-    @available_offices = NewCompanyFacade.prepare_for_dropdown(Office.available)
+    @available_offices = OfficeDropdownFacade.prepare_for_dropdown(Office.available)
   end
 
   def destroy
