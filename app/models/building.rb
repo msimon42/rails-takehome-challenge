@@ -1,7 +1,7 @@
 class Building < ApplicationRecord
   has_many :offices
   has_many :companies, through: :offices
-  has_many :employees, through: :companies
+  has_many :employees, through: :offices
 
   validates_presence_of :name,
                         :country,
@@ -39,13 +39,14 @@ class Building < ApplicationRecord
   def companies_by_floor
     query = ActiveRecord::Base.connection.execute(
       """
-      SELECT offices.floor, companies.name, companies.id
+      SELECT offices.floor, offices.id, companies.name, companies.id
       FROM offices
       LEFT JOIN companies ON offices.company_id = companies.id
       WHERE offices.building_id = #{self.id}
-      ORDER BY companies.name
+      ORDER BY companies.name DESC
       """
     )
+
     query.to_a
   end
 end
