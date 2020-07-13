@@ -4,7 +4,6 @@ class BuildingsController < ApplicationController
   end
 
   def show
-    building = Building.find(params[:id])
-    @building_facade = BuildingsFacade.new(building)
+    @building = Building.find(params[:id])
   end
 end
