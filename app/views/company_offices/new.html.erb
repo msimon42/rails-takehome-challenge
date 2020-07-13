@@ -1,0 +1,6 @@
+<h1>Select Office</h1>
+<%= form_with url: company_company_offices_path(@company_id) do |form| %>
+  <%= form.label :office, 'Available Offices' %>
+  <%= form.select :office, options_from_collection_for_select(@available_offices,'id', 'info') %>
+  <%= form.submit 'Add Office', class: 'form-submit' %>
+<% end %>
