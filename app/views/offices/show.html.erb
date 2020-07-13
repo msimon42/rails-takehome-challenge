@@ -1,0 +1,23 @@
+<h1><%= "#{@office.building.name} ##{@office.floor}" %></h1>
+
+<h3>Current Tenant</h3>
+  <p><%= @office.company&.name %></p>
+
+<h3>Employees</h3>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Title</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @office.employees.each do |employee| %>
+        <tr>
+          <td><%= employee.name %></td>
+          <td><%= employee.title %></td>
+        </tr>
+      <% end %>
+    </tbody>
+</table>
+<p><%= link_to 'Building Summary', building_path(@office.building_id) %></p>
