@@ -8,6 +8,7 @@
       <li class='list-group-item'><span class='data-label'>Total Rent</span> <%= number_to_currency @company.total_rent %></li>
     </ul>
 </div>
+<div>
   <h3>Office Locations</h3>
     <table class="table table-striped">
         <thead>
@@ -19,15 +20,18 @@
         <tbody>
           <% @company.offices.each do |office| %>
             <tr>
-              <td><%= office.building.name %></td>
-              <td><%= office.floor %></td>
+              <td><%= link_to office.building.name, building_path(office.building_id) %></td>
+              <td><%= link_to office.floor, building_office_path(building_id: office.building_id, id: office.id) %></td>
             </tr>
           <% end %>
         </tbody>
     </table>
+    <%= button_to 'Add Office', new_company_company_office_path(@company.id), method: :get, class: 'btn btn-primary' %>
+  </div>
 
   <h3>Employees</h3>
     <%= link_to 'Add Employee', new_company_employee_path(@company.id), class: 'btn btn-primary' %>
+    <% if @company.employees.any? %>
     <table class="table table-striped">
         <thead>
           <tr>
@@ -48,4 +52,5 @@
           <% end %>
         </tbody>
     </table>
+  <% end %>
 <p><%= link_to 'All Companies', companies_path %></p>

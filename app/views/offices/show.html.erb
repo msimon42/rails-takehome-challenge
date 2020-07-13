@@ -1,7 +1,7 @@
 <h1><%= "#{@office.building.name} ##{@office.floor}" %></h1>
-
+<% if @office.company %>
 <h3>Current Tenant</h3>
-  <p><%= @office.company&.name %></p>
+  <p><%= link_to @office.company.name, company_path(@office.company_id) %></p>
 
 <h3>Employees</h3>
 <table class="table table-striped">
@@ -20,4 +20,7 @@
       <% end %>
     </tbody>
 </table>
+<% else %>
+<h3>VACANT</h3>
+<% end %>
 <p><%= link_to 'Building Summary', building_path(@office.building_id) %></p>

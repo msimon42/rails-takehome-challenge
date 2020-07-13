@@ -1,5 +1,6 @@
 <h1>All Companies</h1>
 <%= button_to 'Add Company', new_company_path, method: :get, class: 'btn btn-primary btn-large' %>
+<% if @companies.any? %>
 <table class="table table-striped">
     <thead>
       <tr>
@@ -17,3 +18,4 @@
         </tr>
       <% end %>
     </tbody>
+<% end %>
