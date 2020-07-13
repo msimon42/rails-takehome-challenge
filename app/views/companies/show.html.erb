@@ -1,8 +1,13 @@
 <h1><%= @company.name %></h1>
-<h2>Company Information</h2>
-  <h3>Financial Info</h3>
-    <p>Total Rent: <%= number_to_currency @company.total_rent %></p>
 
+<div class='card info-card'>
+  <h2>Company Information</h2>
+    <ul class='list-group'>
+      <li class='list-group-item'><span class='data-label'>Name</span> <%= @company.name %></li>
+      <li class='list-group-item'><span class='data-label'>Total Offices</span> <%= @company.total_offices %></li>
+      <li class='list-group-item'><span class='data-label'>Total Rent</span> <%= number_to_currency @company.total_rent %></li>
+    </ul>
+</div>
   <h3>Office Locations</h3>
     <table class="table table-striped">
         <thead>
@@ -22,12 +27,13 @@
     </table>
 
   <h3>Employees</h3>
-    <%= button_to 'Add Employee', new_company_employee_path(@company.id), method: :get, class: 'btn btn-primary' %>
+    <%= link_to 'Add Employee', new_company_employee_path(@company.id), class: 'btn btn-primary' %>
     <table class="table table-striped">
         <thead>
           <tr>
             <th>Name</th>
             <th>Title</th>
+            <th>Building</th>
             <th></th>
           </tr>
         </thead>
@@ -36,8 +42,10 @@
             <tr>
               <td><%= employee.name %></td>
               <td><%= employee.title %></td>
-              <td><%= button_to 'Delete', company_employee_path(company_id: @company.id, id: employee.id), method: :delete, class: 'btn btn-danger' %></td>
+              <td><%= link_to employee.office.building_name, building_path(employee.office.building_id) %></td>
+              <td><%= link_to 'Delete', company_employee_path(company_id: @company.id, id: employee.id), method: :delete, class: 'btn btn-danger' %></td>
             </tr>
           <% end %>
         </tbody>
     </table>
+<p><%= link_to 'All Companies', companies_path %></p>

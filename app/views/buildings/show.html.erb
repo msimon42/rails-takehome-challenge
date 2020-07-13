@@ -1,14 +1,16 @@
-<h1><%= @building_facade.building.name %></h1>
-
-<h2>Building Information</h2>
-<p>Name: <%= @building_facade.building.name %></p>
-<p>Country: <%= @building_facade.building.country %></p>
-<p>Address: <%= @building_facade.building.address %></p>
-<p>Rent per Floor: <%= number_to_currency @building_facade.building.rent_per_floor %></p>
-<p>Number of Floors: <%= @building_facade.building.number_of_floors %></p>
-<p>Total Rent: <%= number_to_currency @building_facade.building.current_monthly_receipts %></p>
-<p>Employees with Access: <%= @building_facade.building.total_employees_with_access %></p>
-
+<h1><%= @building.name %></h1>
+<div class='card info-card'>
+  <h2>Building Information</h2>
+  <ul class='list-group'>
+    <li class='list-group-item'><span class='data-label'>Name </span> <%= @building.name %></li>
+    <li class='list-group-item'><span class='data-label'>Country </span> <%= @building.country %></li>
+    <li class='list-group-item'><span class='data-label'>Address </span> <%= @building.address %></li>
+    <li class='list-group-item'><span class='data-label'>Rent per Floor </span> <%= number_to_currency @building.rent_per_floor %></li>
+    <li class='list-group-item'><span class='data-label'>Number of Floors </span> <%= @building.number_of_floors %></li>
+    <li class='list-group-item'><span class='data-label'>Total Rent </span> <%= number_to_currency @building.current_monthly_receipts %></li>
+    <li class='list-group-item'><span class='data-label'>Employees with Access </span> <%= @building.total_employees_with_access %></li>
+  </ul>
+</div>
 <h2>Current Occupants</h2>
 <table class="table table-striped">
     <thead>
@@ -18,11 +20,12 @@
       </tr>
     </thead>
     <tbody>
-      <% @building_facade.companies_by_floor.each do |row_info| %>
+      <% @building.companies_by_floor.each do |row_info| %>
         <tr>
-          <td><%= row_info.floor_number %></td>
-          <td><%= link_to row_info.company_label, row_info.path %></td>
+          <td><%= link_to row_info[0], building_office_path(building_id: @building.id, id: row_info[1]) %></td>
+          <td><%= link_to row_info[2], company_path(row_info[3]) if row_info[2] %></td>
         </tr>
       <% end %>
     </tbody>
 </table>
+<p><%= link_to 'All Buildings', buildings_path %></p>
