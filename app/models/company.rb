@@ -12,4 +12,8 @@ class Company < ApplicationRecord
   def building_names
     buildings.pluck(:name)
   end
+
+  def total_offices
+    offices.length
+  end
 end
