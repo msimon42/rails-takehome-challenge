@@ -4,5 +4,5 @@
  <%= form.text_field :name %>
  <%= form.label :office %>
  <%= form.select :office, options_from_collection_for_select(@available_offices,'id', 'info') %>
- <%= form.submit %>
+ <%= form.submit 'Save', class: 'form-submit' %>
 <% end %>

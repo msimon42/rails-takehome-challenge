@@ -5,5 +5,5 @@
   <%= form.label :title %>
   <%= form.text_field :title %>
   <%= form.select :office, options_from_collection_for_select(@offices, 'id', 'info') %>
-  <%= form.submit %>
+  <%= form.submit 'Save', class: 'form-submit' %>
 <% end %>
