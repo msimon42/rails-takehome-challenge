@@ -16,4 +16,8 @@ class Office < ApplicationRecord
   def rent
     building.rent_per_floor
   end
+
+  def building_name
+    building.name
+  end
 end
