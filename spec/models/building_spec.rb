@@ -4,6 +4,8 @@ RSpec.describe Building, type: :model do
   describe 'relationships' do
     it { should have_many :offices }
     it { should have_many(:companies).through(:offices)}
+    it { should have_many(:employees).through(:offices)}
+
   end
 
   describe 'validations' do
@@ -20,14 +22,17 @@ RSpec.describe Building, type: :model do
     before :each do
       @building = create :building, number_of_floors: 10, rent_per_floor: 1000
       @offices = create_list :office, 10, building: @building
+      @other_office = create :office
       @company_1 = create :company
       @company_2 = create :company
 
       @company_1.offices << @offices[3]
+      @company_1.offices << @other_office
       @company_2.offices << @offices[7]
 
-      create_list :employee, 5, company: @company_1
-      create_list :employee, 4, company: @company_2
+      create_list :employee, 5, company: @company_1, office: @offices[3]
+      create_list :employee, 2, company: @company_1, office: @other_office
+      create_list :employee, 4, company: @company_2, office: @offices[7]
     end
 
     it 'available_floors' do

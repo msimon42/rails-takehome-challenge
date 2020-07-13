@@ -4,6 +4,7 @@ RSpec.describe Company, type: :model do
   describe 'relationships' do
     it { should have_many :offices }
     it { should have_many :employees }
+    it { should have_many(:buildings).through(:offices)}
   end
 
   describe 'validations' do
