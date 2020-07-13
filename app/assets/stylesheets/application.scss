@@ -14,3 +14,42 @@
  *= require_self
  */
 @import "bootstrap";
+
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.form-submit {
+  width: 50%;
+  background-color: #17BEBB;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.data-label {
+  color: #9296a6;
+  text-align: right;
+}
+
+.list-group-item {
+  display: table-row;
+}
+
+.list-group {
+  background-color: #f0f0f0;
+}
+
+.info-card {
+  padding: 20px;
+  text-align: justify;
+  background-color: #f0f0f0;
+  margin-bottom: 20px;
+}
