@@ -1,5 +1,5 @@
 class Company < ApplicationRecord
-  has_many :offices
+  has_many :offices, dependent: :nullify
   has_many :buildings, through: :offices
   has_many :employees, dependent: :destroy
 
