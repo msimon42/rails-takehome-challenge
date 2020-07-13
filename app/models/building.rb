@@ -29,11 +29,15 @@ class Building < ApplicationRecord
   end
 
   def current_monthly_receipts
-    occupied_offices.length * rent_per_floor
+    occupied_offices.size * rent_per_floor
   end
 
   def total_employees_with_access
-    employees.length
+    employees.size
+  end
+
+  def all_floors
+    offices.pluck(:floor)
   end
 
   def companies_by_floor

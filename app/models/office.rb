@@ -5,6 +5,8 @@ class Office < ApplicationRecord
 
   validates :floor, presence: true, numericality: true
 
+  before_create :valid_building_placement?
+
   def self.available
     where(company_id: nil)
   end
@@ -20,4 +22,15 @@ class Office < ApplicationRecord
   def building_name
     building.name
   end
+
+  private
+
+    def valid_building_placement?
+      enough_space = building.offices.size < building.number_of_floors
+      not_duplicate_floor_number = building.all_floors.exclude?(floor)
+
+      unless enough_space && not_duplicate_floor_number
+        raise 'Office cannot be created. There may not be enough room in the building, or this floor may already exist.'
+      end
+    end
 end

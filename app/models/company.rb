@@ -14,6 +14,10 @@ class Company < ApplicationRecord
   end
 
   def total_offices
-    offices.length
+    offices.size
+  end
+
+  def office_ids
+    offices.pluck(:id)
   end
 end
